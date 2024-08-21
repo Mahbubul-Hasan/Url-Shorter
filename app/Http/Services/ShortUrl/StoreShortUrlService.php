@@ -14,7 +14,7 @@ class StoreShortUrlService {
             'original_url' => $request->original_url,
             'url_code'     => $this->generateUniqueShortCode($request->url_code),
             'expire'       => $request->expire ?? 48,
-            'expire_at'    => $this->expireAtDate($request->expire),
+            'expired_at'   => $this->expireAtDate($request->expire),
         ]);
 
         session()->flash('url', asset($shortUrl->url_code));
