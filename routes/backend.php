@@ -9,7 +9,7 @@ Route::match(['get', 'post'], 'login', [AuthenticationController::class, 'login'
 // Route::middleware('auth')->group(
 // function () {
 Route::controller(DashboardController::class)->group(function () {
-    Route::get('/', 'index')->name('dashboard');
+    Route::get('home', 'index')->name('dashboard');
     Route::post('url-short', 'urlShort')->name('url-short.create');
 });
 // }
