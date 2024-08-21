@@ -8,6 +8,9 @@ Route::match(['get', 'post'], 'login', [AuthenticationController::class, 'login'
 
 // Route::middleware('auth')->group(
 // function () {
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('/', 'index')->name('dashboard');
+    Route::post('url-short', 'urlShort')->name('url-short.create');
+});
 // }
 // );
