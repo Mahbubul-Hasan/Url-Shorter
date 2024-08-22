@@ -12,3 +12,12 @@ function dateFormat1_1($date) {
 function makeSlug($sting) {
     return Str::slug($sting, '-');
 }
+function makeRandomString($length = 10) {
+    $characters   = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $uniqueString = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $uniqueString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $uniqueString;
+}

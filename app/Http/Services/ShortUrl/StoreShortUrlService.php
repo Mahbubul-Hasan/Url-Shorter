@@ -3,7 +3,6 @@
 namespace App\Http\Services\ShortUrl;
 
 use App\Models\ShortUrl;
-use Illuminate\Support\Str;
 use App\Jobs\StoreShortUrlJob;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +29,7 @@ class StoreShortUrlService {
             $shortCode = $code;
         } else {
             do {
-                $shortCode = Str::random(6);
+                $shortCode = makeRandomString(6);
             } while (ShortUrl::where('url_code', $shortCode)->exists());
         }
 
