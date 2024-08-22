@@ -4,20 +4,23 @@ namespace App\Http\Services\ShortUrl;
 
 use App\Models\ShortUrl;
 use Illuminate\Support\Str;
+use App\Jobs\StoreShortUrlJob;
 use Illuminate\Support\Facades\Auth;
 
 class StoreShortUrlService {
     public function saveRequest($request) {
 
-        $shortUrl = ShortUrl::Create([
+        $shortUrl = [
             'user_id'      => Auth::id(),
             'original_url' => $request->original_url,
             'url_code'     => $this->generateUniqueShortCode($request->url_code),
             'expire'       => $request->expire ?? 48,
             'expired_at'   => $this->expireAtDate($request->expire),
-        ]);
+        ];
 
-        session()->flash('url', asset($shortUrl->url_code));
+        session()->flash('url', asset($shortUrl['url_code']));
+
+        dispatch(new StoreShortUrlJob($shortUrl));
 
         return $shortUrl;
     }
