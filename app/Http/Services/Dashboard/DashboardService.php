@@ -10,7 +10,7 @@ class DashboardService {
     public function getData($request) {
         if ($request->ajax()) {
             $shortUrls = ShortUrl::query();
-            $shortUrls->where('user_id', Auth::id())->latest()->select('short_urls.*');
+            $shortUrls->withTrashed()->where('user_id', Auth::id())->latest()->select('short_urls.*');
 
             return DataTables::of($shortUrls)->escapeColumns([])
                 ->addColumn('serial_number', function ($row) {

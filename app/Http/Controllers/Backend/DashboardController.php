@@ -15,11 +15,9 @@ class DashboardController extends Controller {
 
     public function index(Request $request, DashboardService $service) {
         $response = $service->getData($request);
-
         if ($response) {
             return $response;
         }
-
         return view("backend.dashboard.index");
     }
     public function urlShort(StoreShortUrlRequest $request, StoreShortUrlService $service) {
