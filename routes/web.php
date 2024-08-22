@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
@@ -10,6 +11,9 @@ Route::get('/', function () {
 
 Route::get('test', [TestController::class, 'index'])->name('test');
 
+Auth::routes();
+
 Route::controller(HomeController::class)->group(function () {
+    Route::get('/home', 'index')->name('home');
     Route::get('/{shortUrl:url_code}', 'redirectUrl')->name('redirectUrl');
 });

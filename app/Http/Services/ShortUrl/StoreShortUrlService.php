@@ -17,7 +17,7 @@ class StoreShortUrlService {
             'expired_at'   => $this->expireAtDate($request->expire),
         ];
 
-        session()->flash('url', asset($shortUrl['url_code']));
+        session()->flash('shortUrl', asset($shortUrl['url_code']));
 
         dispatch(new StoreShortUrlJob($shortUrl));
 

@@ -119,15 +119,15 @@
         <div class="row">
             <div class="col">
                 <!-- card -->
-                <div class="card card-h-100">
+                <div class="card card-h-100 bg-light">
                     <!-- card body -->
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h3 class="">URL Shorter Form</h3>
 
-                            @if (session()->has('url'))
-                                <a href="{{ session('url') }}" target="_blank"
-                                    class="fw-bolder fs-4">{{ session('url') }}</a>
+                            @if (session()->has('shortUrl'))
+                                <a href="{{ session('shortUrl') }}" target="_blank"
+                                    class="fw-bolder fs-4">{{ session('shortUrl') }}</a>
                             @endif
                         </div>
                         <div>
