@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Str;
 
+function isAdmin() {
+    return auth()->user()->isAdmin;
+}
+
 function dateFormat1($date) {
     return date('d M Y', strtotime($date));
 }

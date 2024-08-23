@@ -14,11 +14,13 @@ class DashboardController extends Controller {
     use ResponseTrait;
 
     public function index(Request $request, DashboardService $service) {
-        $response = $service->getData($request);
-        if ($response) {
-            return $response;
+        $data = [];
+        if ($request->ajax()) {
+            return $service->getUserTableData();
+        } else if (isAdmin()) {
+            $data = $service->getAdminData();
         }
-        return view("backend.dashboard.index");
+        return view("backend.dashboard.index", $data);
     }
     public function urlShort(StoreShortUrlRequest $request, StoreShortUrlService $service) {
         try {
