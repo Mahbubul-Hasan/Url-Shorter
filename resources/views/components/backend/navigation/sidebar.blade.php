@@ -19,6 +19,12 @@
                         <span data-key="t-dashboard">Url</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('backend.users') }}">
+                        <i class="fas fa-user"></i>
+                        <span data-key="t-dashboard">Users</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

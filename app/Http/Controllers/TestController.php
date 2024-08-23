@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ShortUrl;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 
 class TestController extends Controller {
     public function index() {
-        return ShortUrl::withTrashed()->where('expired_at', '<', now())->delete();
+        return User::withCount('urlsWithTrashed')->latest()->get();
     }
 }
