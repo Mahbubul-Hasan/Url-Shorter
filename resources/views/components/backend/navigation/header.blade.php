@@ -5,10 +5,10 @@
             <div class="navbar-brand-box text-center">
                 <a href="{{ route('backend.dashboard') }}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('/assets/frontend/images/logo.png') }}" alt="" height="25">
+                        {{ $settings->site_name }}
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('/assets/frontend/images/logo.png') }}" alt="" height="50">
+                        {{ $settings->site_name }}
                     </span>
                 </a>
 

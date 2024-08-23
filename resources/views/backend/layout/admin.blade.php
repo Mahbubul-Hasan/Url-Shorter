@@ -4,12 +4,13 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>@yield('title') | {{ config('app.name') }}</title>
+    <title>@yield('title') | {{ $settings->site_name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('/assets/frontend/images/fav.png') }}" />
+    <link rel="shortcut icon"
+        href="{{ $settings->favicon ? $settings->faviconLink : asset('/assets/frontend/images/fav.png') }}" />
 
     <!-- preloader css -->
     <link rel="stylesheet" href="{{ asset('/assets/backend/css/preloader.min.css') }}" type="text/css" />
