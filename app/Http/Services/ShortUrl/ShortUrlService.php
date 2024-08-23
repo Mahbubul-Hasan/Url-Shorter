@@ -34,6 +34,10 @@ class ShortUrlService {
         return null;
     }
 
+    public function getDataBySpecifiedUser($request) {
+        return ShortUrl::withTrashed()->where('user_id', $request->user_id)->latest()->get();
+    }
+
     public function saveRequest($request) {
         $shortUrl = [
             'user_id'      => Auth::id(),

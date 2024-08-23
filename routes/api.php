@@ -14,6 +14,7 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::controller(ShortUrlController::class)->group(function () {
+        Route::get('url-short', 'index');
         Route::post('url-short', 'store');
     });
 });

@@ -211,6 +211,51 @@
             }
         },
         "/api/url-short": {
+            "get": {
+                "tags": [
+                    "Short Link"
+                ],
+                "summary": "List of short link by specified user",
+                "description": "",
+                "operationId": "shortLinkList",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "authToken": []
+                    }
+                ]
+            },
             "post": {
                 "tags": [
                     "Short Link"
