@@ -209,12 +209,93 @@
                     }
                 ]
             }
+        },
+        "/api/url-short": {
+            "post": {
+                "tags": [
+                    "Short Link"
+                ],
+                "summary": "Create short link",
+                "description": "",
+                "operationId": "shortLink",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "original_url"
+                                ],
+                                "properties": {
+                                    "original_url": {
+                                        "type": "string",
+                                        "example": "https: //exemple.com"
+                                    },
+                                    "url_code": {
+                                        "type": "string",
+                                        "example": "Xyz123"
+                                    },
+                                    "expire": {
+                                        "type": "number",
+                                        "example": "48"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Created successfully!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Wrong credentials response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Something wrong. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "authToken": []
+                    }
+                ]
+            }
         }
     },
     "tags": [
         {
             "name": "Authentication",
             "description": "Authentication"
+        },
+        {
+            "name": "Short Link",
+            "description": "Short Link"
         }
     ],
     "components": {

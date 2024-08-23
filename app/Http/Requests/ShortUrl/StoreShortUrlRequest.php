@@ -24,17 +24,4 @@ class StoreShortUrlRequest extends FormRequest {
             'expire'       => ['nullable', "numeric"],
         ];
     }
-
-    public function saveRequest($about) {
-        try {
-            $about->update([
-                'short_description' => $this->short_description,
-                'description'       => $this->description,
-            ]);
-
-            return $this->responseMessage('success', "About page updated");
-        } catch (\Throwable $th) {
-            return $this->responseMessage('error', $th->getMessage());
-        }
-    }
 }
