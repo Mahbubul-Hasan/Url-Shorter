@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 class TestController extends Controller {
     public function index() {
-        return User::withCount('urlsWithTrashed')->latest()->get();
+        $user = User::where('email', 'mahbub@gmail.com')->first();
+        return $user->password;
     }
 }
