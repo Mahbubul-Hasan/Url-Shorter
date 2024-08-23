@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\UserLoginRequest;
 use App\Http\Services\Auth\UserLoginServices;
+use App\Http\Services\Auth\UserLogoutServices;
 use App\Http\Requests\Auth\UserRegisterRequest;
 use App\Http\Services\Auth\UserRegisterServices;
 
@@ -87,5 +88,35 @@ class AuthController extends Controller {
 
     public function login(UserLoginRequest $request, UserLoginServices $service) {
         return $service->login($request);
+    }
+
+    /**
+     * User logout
+     * @OA\Post(
+     *      path="/api/auth/logout",
+     *      summary="User logout",
+     *      description="",
+     *      operationId="logout",
+     *      tags={"Authentication"},
+     *      security={ {"authToken": {} }},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Logout successfully!")
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Wrong credentials response",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Something wrong. Please try again")
+     *          )
+     *      )
+     * )
+     */
+
+    public function logout(Request $request, UserLogoutServices $service) {
+        return $service->logout($request);
     }
 }
