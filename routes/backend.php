@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\ShortUrlController;
 use App\Http\Controllers\Backend\DashboardController;
 
 Route::middleware('auth')->group(function () {
@@ -8,4 +9,6 @@ Route::middleware('auth')->group(function () {
         Route::get('home', 'index')->name('dashboard');
         Route::post('url-short', 'urlShort')->name('url-short.create');
     });
+
+    Route::get('url-short', [ShortUrlController::class, 'index'])->name('url-short');
 });

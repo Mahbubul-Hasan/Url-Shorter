@@ -4,11 +4,37 @@ namespace App\Http\Services\ShortUrl;
 
 use App\Models\ShortUrl;
 use App\Jobs\StoreShortUrlJob;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
 
-class StoreShortUrlService {
-    public function saveRequest($request) {
+class ShortUrlService {
 
+    public function getData($request) {
+        if ($request->ajax()) {
+            $shortUrls = ShortUrl::query();
+            $shortUrls->withTrashed()->with('user')->latest()->select('short_urls.*');
+
+            return DataTables::of($shortUrls)->escapeColumns([])
+                ->addColumn('serial_number', function ($row) {
+                    return '';
+                })
+                ->editColumn('serial_number', function ($row) {
+                    static $count = 0;
+                    $count++;
+                    return $count;
+                })
+                ->addColumn('expired_at', function ($shortUrl) {
+                    return dateFormat1_1(@$shortUrl->expired_at);
+                })
+                ->addColumn('created_at', function ($shortUrl) {
+                    return dateFormat1_1(@$shortUrl->created_at);
+                })
+                ->make(true);
+        }
+        return null;
+    }
+
+    public function saveRequest($request) {
         $shortUrl = [
             'user_id'      => Auth::id(),
             'original_url' => $request->original_url,

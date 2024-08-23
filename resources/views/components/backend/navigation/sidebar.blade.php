@@ -12,6 +12,13 @@
                         <span data-key="t-dashboard">Dashboard</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('backend.url-short') }}">
+                        <i class="fas fa-link"></i>
+                        <span data-key="t-dashboard">Url</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
