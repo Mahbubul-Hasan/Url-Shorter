@@ -12,7 +12,6 @@ Route::get('/', function () {
 Route::get('test', [TestController::class, 'index'])->name('test');
 
 Auth::routes();
-
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'landingPage')->name('landingPage');
     Route::get('/home', 'index')->name('home');

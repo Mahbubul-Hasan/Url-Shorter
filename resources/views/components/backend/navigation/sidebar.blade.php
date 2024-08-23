@@ -25,6 +25,12 @@
                         <span data-key="t-dashboard">Users</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('backend.settings.index') }}">
+                        <i class="fas fa-cog"></i>
+                        <span data-key="t-dashboard">Settings</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
