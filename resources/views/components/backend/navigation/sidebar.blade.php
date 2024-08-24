@@ -37,6 +37,12 @@
                         <span data-key="t-dashboard">Permissions</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('backend.roles.index') }}">
+                        <i class="fas fa-user-shield"></i>
+                        <span data-key="t-dashboard">Roles</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

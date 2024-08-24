@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
 
 function isAdmin() {
     return auth()->user()->isAdmin;
@@ -24,4 +25,16 @@ function makeRandomString($length = 10) {
         $uniqueString .= $characters[rand(0, strlen($characters) - 1)];
     }
     return $uniqueString;
+}
+
+function roleHasPermissions($role) {
+    $permissions   = Permission::all();
+    $hasPermission = true;
+    foreach ($permissions as $permission) {
+        if (!$role->hasPermissionTo($permission->name)) {
+            $hasPermission = false;
+            return $hasPermission;
+        }
+    }
+    return $hasPermission;
 }

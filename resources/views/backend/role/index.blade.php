@@ -1,6 +1,6 @@
 @extends('backend.layout.admin')
 
-@section('title', 'Permission')
+@section('title', 'Role')
 
 @section('main')
     <div class="container-fluid">
@@ -10,10 +10,10 @@
                     <div
                         class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0 d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-between">
-                            <h4 class="card-title mg-b-10">Permission</h4>
+                            <h4 class="card-title mg-b-10">Role</h4>
                         </div>
-                        @can('Create permission')
-                            <a href="{{ route('backend.permissions.create') }}" class="btn btn-primary">Add New</a>
+                        @can('Create role')
+                            <a href="{{ route('backend.roles.create') }}" class="btn btn-primary">Add New</a>
                         @endcan
 
                     </div>
@@ -21,10 +21,10 @@
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                             <thead>
                                 <tr>
-                                    <th>S/N</th>
-                                    <th>Group Name</th>
-                                    <th>Permissions</th>
-                                    <th>Action</th>
+                                    <th class="border-bottom-0">S/N</th>
+                                    <th class="border-bottom-0">Role</th>
+                                    <th class="border-bottom-0">Permissions</th>
+                                    <th class="border-bottom-0">Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -35,8 +35,8 @@
     </div>
 @endsection
 
-
 <x-backend.scripts.datatable />
+
 @push('scripts')
     <script>
         $(document).ready(function() {
@@ -51,7 +51,7 @@
                     [25, 50, 100, 200, 300, 500, 1000, "All"],
                 ],
                 ajax: {
-                    url: "{{ route('backend.permissions.index') }}",
+                    url: "{{ route('backend.roles.index') }}",
                     data: function(d) {
                         d.lang = $('select[name=lang]').val();
                         d.start_date = $('input[name=start_date]').val();
@@ -67,12 +67,14 @@
                     },
 
                     {
-                        data: 'group_name',
-                        name: 'group_name',
-                    },
-                    {
                         data: 'name',
                         name: 'name',
+                    },
+                    {
+                        data: 'permissions',
+                        name: 'permissions',
+                        orderable: false,
+                        searchable: false,
                     },
                     {
                         data: 'action',
@@ -81,8 +83,8 @@
                         render: function(data) {
 
                             let output = `<div class="hstack gap-2 align-items-center">`;
-                            if ("{{ auth()->user()->can('Edit permission') }}") {
-                                output += ` <a href="${data.edit}" class="edit text-info border px-2 py-1 rounded" title="Edit">
+                            if ("{{ auth()->user()->can('Edit role') }}") {
+                                output += `<a href="${data.edit}" class="edit text-info border px-2 py-1 rounded" title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </a>`;
                             }
@@ -102,6 +104,21 @@
                         cell.innerHTML = startIndex + i + 1;
                     });
                 }
+            });
+
+            $('select[name=lang]').change(function() {
+                oTable.draw();
+            });
+
+            $('#filter-form').on('submit', function(e) {
+                oTable.draw();
+                e.preventDefault();
+            });
+
+            $("#filter-form #reset-form").click(function() {
+                $("#filter-form .select2").val(0).trigger("change");
+                $('#filter-form').trigger("reset");
+                oTable.clear().draw();
             });
         })
     </script>
