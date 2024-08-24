@@ -15,7 +15,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('url-short', [ShortUrlController::class, 'index'])->name('url-short');
-    Route::get('users', [UserController::class, 'index'])->name('users');
 
     Route::controller(SettingsController::class)->as('settings.')->group(function () {
         Route::get('settings', 'index')->name('index');
@@ -24,5 +23,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('permissions', PermissionController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
 
 });

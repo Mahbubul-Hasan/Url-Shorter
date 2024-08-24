@@ -8,7 +8,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="">User List</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3 class="">User List</h3>
+                            @can('Create user')
+                                <a href="{{ route('backend.users.create') }}" class="btn btn-primary">Add New</a>
+                            @endcan
+                        </div>
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                             <thead>
                                 <tr>
@@ -16,6 +21,7 @@
                                     <th>User</th>
                                     <th>Email</th>
                                     <th>Short Url Count</th>
+                                    <th>Role</th>
                                     <th>Created At</th>
                                 </tr>
                             </thead>
@@ -45,7 +51,7 @@
                     [25, 50, 100, 200, 300, 500, 1000, "All"],
                 ],
                 ajax: {
-                    url: "{{ route('backend.users') }}",
+                    url: "{{ route('backend.users.index') }}",
                     data: function(d) {
                         d.lang = $('select[name=lang]').val();
                     },
@@ -68,6 +74,10 @@
                     {
                         data: 'urls_with_trashed_count',
                         name: 'urls_with_trashed_count',
+                    },
+                    {
+                        data: 'role',
+                        name: 'role',
                     },
                     {
                         data: 'created_at',

@@ -87,5 +87,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/js/multyCheckbox.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/multyCheckbox.js') }}"></script>
 @endpush

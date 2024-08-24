@@ -20,12 +20,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('backend.users') }}">
-                        <i class="fas fa-user"></i>
-                        <span data-key="t-dashboard">Users</span>
-                    </a>
-                </li>
-                <li>
                     <a href="{{ route('backend.settings.index') }}">
                         <i class="fas fa-cog"></i>
                         <span data-key="t-dashboard">Settings</span>
@@ -41,6 +35,12 @@
                     <a href="{{ route('backend.roles.index') }}">
                         <i class="fas fa-user-shield"></i>
                         <span data-key="t-dashboard">Roles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('backend.users.index') }}">
+                        <i class="fas fa-user"></i>
+                        <span data-key="t-dashboard">Users</span>
                     </a>
                 </li>
             </ul>

@@ -7,17 +7,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div
-                        class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0 d-flex justify-content-between align-items-center">
-                        <div class="d-flex justify-content-between">
-                            <h4 class="card-title mg-b-10">Role</h4>
-                        </div>
-                        @can('Create role')
-                            <a href="{{ route('backend.roles.create') }}" class="btn btn-primary">Add New</a>
-                        @endcan
-
-                    </div>
                     <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3 class="">Role</h3>
+                            @can('Create role')
+                                <a href="{{ route('backend.roles.create') }}" class="btn btn-primary">Add New</a>
+                            @endcan
+                        </div>
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                             <thead>
                                 <tr>
