@@ -31,6 +31,12 @@
                         <span data-key="t-dashboard">Settings</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('backend.permissions.index') }}">
+                        <i class="fas fa-shield-alt"></i>
+                        <span data-key="t-dashboard">Permissions</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
