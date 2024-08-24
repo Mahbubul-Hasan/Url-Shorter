@@ -2,15 +2,15 @@
 
 ## Overview
 
-This project is a URL shortening service built with Laravel 11. It features a role and permission system, user authentication, and API endpoints for both URL shortening and authentication. The project also includes API documentation.
+This project is a URL shortening service built with Laravel. It features a role and permission system, user authentication, and API endpoints for both URL shortening and authentication. The project also includes API documentation.
 
 ## Features
 
--   URL Shortening Service
--   Role-Based Access Control (RBAC)
--   API Authentication (Laravel Sanctum)
--   API for URL Shortening
--   API Documentation at `/api/documentation`
+-   URL Shortener: Generate short URLs for longer links.
+-   Role and Permission System: Manage user roles and permissions with ease.
+-   Scheduled Task: Soft-deletes expired URLs every 6 hours.
+-   API Authentication: Secure API endpoints with Laravel Sanctum.
+-   API Documentation: Access detailed API documentation at `/api/documentation`
 
 ## Prerequisites
 
@@ -79,9 +79,13 @@ php artisan schedule:work
 
 ## Running the Project
 
+To start the application locally, use the following command:
+
 ```bash
 php artisan serve
 ```
+
+Ensure your queue worker is running and that the scheduled task is set up for soft-deleting expired URLs.
 
 ## Usage
 
