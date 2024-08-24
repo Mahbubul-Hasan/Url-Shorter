@@ -77,6 +77,12 @@ The project requires a scheduled task to run every 6 hours to soft-delete expire
 php artisan schedule:work
 ```
 
+## Running the Project
+
+```bash
+php artisan serve
+```
+
 ## Usage
 
 ### URL Shortener
