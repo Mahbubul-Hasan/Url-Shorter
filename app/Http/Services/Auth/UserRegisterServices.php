@@ -15,7 +15,7 @@ class UserRegisterServices {
                 'email'    => $request->email,
                 'password' => bcrypt($request->password),
             ]);
-
+            $user->assignRole("User");
             $token = $user->createToken($request->email);
             $data  = [
                 'user'  => $user,

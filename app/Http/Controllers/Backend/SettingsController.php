@@ -9,6 +9,12 @@ use App\Http\Services\Settings\SettingsService;
 use App\Http\Requests\Settings\UpdateSettingsRequest;
 
 class SettingsController extends Controller {
+
+    public function __construct() {
+        $this->middleware(['permission:Show settings'])->only('index');
+        $this->middleware(['permission:Edit category'])->only('update');
+    }
+
     public function index(Request $request) {
         $settings = Settings::find(1);
         return view("backend.settings.index", compact('settings'));

@@ -9,6 +9,11 @@ use App\Http\Services\Users\UserService;
 use App\Http\Requests\User\StoreUserRequest;
 
 class UserController extends Controller {
+    public function __construct() {
+        $this->middleware(['permission:User list'])->only('index');
+        $this->middleware(['permission:Create user'])->only('create', 'store');
+    }
+
     public function index(Request $request, UserService $service) {
         $response = $service->getData($request);
         if ($response) {

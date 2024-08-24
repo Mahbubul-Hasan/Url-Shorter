@@ -4,7 +4,7 @@ use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
 
 function isAdmin() {
-    return auth()->user()->isAdmin;
+    return auth()->user()->hasRole('Admin');
 }
 
 function dateFormat1($date) {

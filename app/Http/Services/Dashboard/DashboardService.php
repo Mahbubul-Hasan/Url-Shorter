@@ -2,6 +2,7 @@
 
 namespace App\Http\Services\Dashboard;
 
+use App\Models\User;
 use App\Models\ShortUrl;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ class DashboardService {
             'total'   => $shortUrls->count(),
             'active'  => $shortUrls->where('expired_at', '>', now())->count(),
             'expired' => $shortUrls->where('expired_at', '<', now())->count(),
+            'users'   => User::count(),
         ];
     }
     public function getUserTableData() {

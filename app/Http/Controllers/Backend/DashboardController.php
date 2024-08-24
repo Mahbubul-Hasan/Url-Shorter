@@ -13,6 +13,10 @@ class DashboardController extends Controller {
 
     use ResponseTrait;
 
+    public function __construct() {
+        $this->middleware(['permission:Dashboard'])->only('index', 'urlShort');
+    }
+
     public function index(Request $request, DashboardService $service) {
         $data = [];
         if ($request->ajax()) {
